@@ -1,14 +1,19 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById('create-task-form');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    console.log('submitted');
-  })
+  form.addEventListener('submit', addTask)
 });
 
-// function addTask(event) {
-//   let taskDescription = event.target.new-task-description.value
-//   let newTask = document.createElement('li');
-//   newTask.textContent = taskDescription;
-//   document.getElementById('tasks').append(newTask)
-// }
+const addTask = (e) => {
+  e.preventDefault();
+  // why doesn't e.target.new-task-description.value work??
+  let taskDescription = {description: e.target[0].value};
+
+  // create new list item for task
+  let newTaskItem = document.createElement('li');
+  // add text to the new list item
+  newTaskItem.innerHTML = taskDescription.description;
+  // get the ul where we want to put list item
+  let taskList = document.querySelector('ul');
+  // append new list item with info to the ul
+  taskList.append(newTaskItem)
+}
